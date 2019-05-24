@@ -10,6 +10,7 @@ const app = express();
 
 // using bodyParser to parse JSON bodies into JS objects
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(logger('combined'));
 // enabling CORS for all requests
 app.use(cors());
