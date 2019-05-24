@@ -29,8 +29,7 @@ module.exports = {
       }], {});
     */
     const results = await loadData();
-      console.log(results[0]);
-      return queryInterface.bulkInsert('providers', results, {});
+    return queryInterface.bulkInsert('providers', results, {});
   },
 
   down: (queryInterface) => {
