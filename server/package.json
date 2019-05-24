@@ -2,13 +2,13 @@
   "name": "server",
   "version": "1.0.0",
   "description": "Bain & Company Coding Challenge -- Patient Data",
-  "main": "app.js",
+  "main": "start.js",
   "author": "Juan Cruz Martinez",
   "license": "MIT",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon start",
+    "server": "nodemon start -e yaml,js",
     "start": "node start.js"
   },
   "dependencies": {
