@@ -1,7 +1,9 @@
-const express = require('express');
-const logger = require('morgan');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import express from 'express';
+import logger from 'morgan';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+
+import routes from './routes';
 
 // defining the Express app
 const app = express();
@@ -12,10 +14,8 @@ app.use(logger('combined'));
 // enabling CORS for all requests
 app.use(cors());
 
-// defining an endpoint to return all ads
-app.get('/', (req, res) => {
-    res.send("Hello World!");
-});
+// api router
+app.use('/', routes);
 
 // starting the server
 app.listen(3001, () => {
