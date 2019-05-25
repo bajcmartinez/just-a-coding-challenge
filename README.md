@@ -165,10 +165,11 @@ In this section we will be deploying the react app into AWS S3 with Cloudfront t
     yarn build
     ```
 
-3. Update the code
+3. Update the code & refresh the cache
 
     ```sh
     aws s3 sync build s3://mys3bucket-example --delete
+    aws cloudfront create-invalidation --distribution-id your-distribution-id --paths "/*"
     ```
     
 4. Grab your cloudfront URL and test it, it should all be working now
