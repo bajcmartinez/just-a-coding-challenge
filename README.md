@@ -27,7 +27,19 @@ Make sure you are on the `server` folder.
     DB_PASSWORD=passwordhere
     ``` 
 
-3. Run server
+3. Migrate the DB to the latest version (optional)
+
+     ```sh
+     sequelize db:migrate
+     ```
+     
+4. Seed the DB with data (optional)
+
+     ```sh
+     sequelize db:seed:all
+     ```
+
+5. Run server
 
     ```sh
     yarn server
