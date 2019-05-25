@@ -5,6 +5,9 @@ import cors from 'cors';
 
 import routes from './routes';
 
+// Determine whether we are running in a lambda environment
+const isInLambda = !!process.env.LAMBDA_TASK_ROOT;
+
 // defining the Express app
 const app = express();
 
@@ -19,6 +22,12 @@ app.use(cors());
 app.use('/', routes);
 
 // starting the server
-app.listen(3001, () => {
-    console.log('listening on port 3001');
-});
+if (isInLambda) {
+    const serverlessExpress = require('aws-serverless-express');
+    const server = serverlessExpress.createServer(app);
+    exports.main = (event, context) => serverlessExpress.proxy(server, event, context)
+} else {
+    app.listen(3001, () => {
+        console.log('listening on port 3001');
+    });
+}

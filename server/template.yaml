@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  SVCCodeChallengeAPI:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: start.main
+      Runtime: nodejs8.10
+      MemorySize: 1024
+      Timeout: 60
+      Events:
+        SVCCodeChallengeAPIRoot:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /
+            Method: ANY
+        SVCCodeChallengeAPI:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
