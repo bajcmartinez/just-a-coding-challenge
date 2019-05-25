@@ -22,7 +22,7 @@ export class ProvidersService {
             return `${key}=${encodeURIComponent(val)}`
         }).filter(Boolean).join('&');
 
-        if (sp != '') {
+        if (sp !== '') {
             url += '?' + sp;
         }
 

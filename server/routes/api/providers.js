@@ -128,6 +128,7 @@ router.get('/', checkSchema({
             [Op.lte]: req.query.max_discharges
         };
         if (req.query.min_discharges) conditions.totalDischarges = {
+            ...conditions.totalDischarges,
             [Op.gte]: req.query.min_discharges
         };
 
@@ -136,14 +137,17 @@ router.get('/', checkSchema({
             [Op.lte]: req.query.max_average_covered_charges
         };
         if (req.query.min_average_covered_charges) conditions.avgCoveredCharges = {
+            ...conditions.avgCoveredCharges,
             [Op.gte]: req.query.min_average_covered_charges
         };
 
         // Add filters for Average Medicare Payments
         if (req.query.max_average_medicare_payments) conditions.avgMedicarePayments = {
+            ...conditions.avgMedicarePayments,
             [Op.lte]: req.query.max_average_medicare_payments
         };
         if (req.query.min_average_medicare_payments) conditions.avgMedicarePayments = {
+            ...conditions.avgMedicarePayments,
             [Op.gte]: req.query.min_average_medicare_payments
         };
 
