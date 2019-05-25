@@ -25,5 +25,11 @@ export interface IProviderResponse {
 }
 
 export interface IProviderQuery {
-    state: string
+    max_discharges?: number,
+    min_discharges?: number,
+    max_average_covered_charges?: number,
+    min_average_covered_charges?: number,
+    max_average_medicare_payments?: number,
+    min_average_medicare_payments?: number
+    state?: string
 }

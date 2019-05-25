@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.scss';
 import Providers from './providers';
+import Container from 'react-bootstrap/Container';
 
 const App: React.FC = () => {
     return (
-        <div className="App">
+        <Container fluid>
             <header>
                 <h1>Coding Challenge</h1>
             </header>
@@ -12,7 +13,7 @@ const App: React.FC = () => {
             <div>
                 <Providers />
             </div>
-        </div>
+        </Container>
     );
 };
 

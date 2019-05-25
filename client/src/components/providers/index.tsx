@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { connect } from "react-redux";
 import { ThunkDispatch } from 'redux-thunk';
 import { IProvidersState } from '../../reducers/providers';
 import { handleQueryProviders, IReceiveProvidersAction } from "../../actions/providers";
 import { IProvider, IProviderQuery } from "../../types/provider";
 import List from './list';
+import Filters from './filters';
 
 interface DispatchProps {
     queryProviders: (query: IProviderQuery) => void
@@ -16,16 +17,36 @@ interface StateProps {
 
 type Props = StateProps & DispatchProps;
 
+type State = Readonly<IProviderQuery>;
+
 class Providers extends React.Component<Props> {
+    state: State;
+
     constructor(props: Props) {
         super(props);
-        const params: IProviderQuery = {
-            state: "test"
-        };
-        props.queryProviders(params);
+
         this.state = {
 
         };
+
+        // Bind functions
+        this.refreshQuery = this.refreshQuery.bind(this as any);
+        this.filterChanged = this.filterChanged.bind(this as any);
+
+        props.queryProviders(this.state);
+    }
+
+    refreshQuery() {
+        this.props.queryProviders(this.state);
+    }
+
+    filterChanged(event: FormEvent<HTMLInputElement>) {
+        const name = event.currentTarget.name;
+        const value = event.currentTarget.value;
+
+        this.setState({
+          [name]: value
+        })
     }
 
     render() {
@@ -33,6 +54,7 @@ class Providers extends React.Component<Props> {
 
         return (
             <div>
+                <Filters refreshQuery={this.refreshQuery} filterChanged={this.filterChanged} />
                 <br />
                 <List providers={providers} />
             </div>
