@@ -21,7 +21,7 @@ export function receiveProviders(providers: IProvider[]): IReceiveProvidersActio
 export const handleQueryProviders = (query: IProviderQuery):
     ThunkAction<void, IProvidersState, null, IReceiveProvidersAction> => async dispatch => {
 
-    const providers = await new ProvidersService().query();
+    const providers = await new ProvidersService().query(query);
     dispatch(receiveProviders(providers));
 };
 

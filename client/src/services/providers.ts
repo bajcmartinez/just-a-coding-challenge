@@ -1,7 +1,7 @@
 import axios, {AxiosInstance} from 'axios';
 
 import { apiUrl } from './api-config';
-import { IProvider, IProviderResponse } from "../types/provider";
+import {IProvider, IProviderQuery, IProviderResponse} from "../types/provider";
 const apiEndPoint = `${apiUrl}/providers`;
 
 export class ProvidersService {
@@ -14,8 +14,19 @@ export class ProvidersService {
         });
     }
 
-    query(): Promise<IProvider[]> {
-        return this._requests.get(`${apiEndPoint}`).then(results => {
+    query(params: IProviderQuery): Promise<IProvider[]> {
+        let url = `${apiEndPoint}`;
+
+        const sp = Object.entries(params).map(([key, val]) => {
+            if (!val) return null;
+            return `${key}=${encodeURIComponent(val)}`
+        }).filter(Boolean).join('&');
+
+        if (sp != '') {
+            url += '?' + sp;
+        }
+
+        return this._requests.get(url).then(results => {
             return results.data.map((record: IProviderResponse) => ({
                 ProviderName: record["Provider Name"],
                 ProviderStreetAddress: record["Provider Street Address"],

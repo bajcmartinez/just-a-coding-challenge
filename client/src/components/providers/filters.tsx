@@ -16,7 +16,7 @@ const ProvidersFilter: React.FC<IProvidersFilterProps> = ({refreshQuery, filterC
         <div>
             <b>Filters:</b>
             <br />
-            <Form onSubmit={(event: FormEvent) => {
+            <Form onSubmit={(event: FormEvent<HTMLFormElement>) => {
                 event.preventDefault();
                 refreshQuery();
             }}>

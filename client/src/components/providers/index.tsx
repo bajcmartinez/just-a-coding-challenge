@@ -41,8 +41,7 @@ class Providers extends React.Component<Props> {
     }
 
     filterChanged(event: FormEvent<HTMLInputElement>) {
-        const name = event.currentTarget.name;
-        const value = event.currentTarget.value;
+        const { name, value } = event.currentTarget;
 
         this.setState({
           [name]: value
