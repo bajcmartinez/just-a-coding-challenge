@@ -4,6 +4,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import { IProvidersState } from '../../reducers/providers';
 import { handleQueryProviders, IReceiveProvidersAction } from "../../actions/providers";
 import { IProvider, IProviderQuery } from "../../types/provider";
+import List from './list';
 
 interface DispatchProps {
     queryProviders: (query: IProviderQuery) => void
@@ -18,14 +19,23 @@ type Props = StateProps & DispatchProps;
 class Providers extends React.Component<Props> {
     constructor(props: Props) {
         super(props);
+        const params: IProviderQuery = {
+            state: "test"
+        };
+        props.queryProviders(params);
         this.state = {
 
         };
     }
 
     render() {
+        const { providers } = this.props;
+
         return (
-            <div>Hello World!</div>
+            <div>
+                <br />
+                <List providers={providers} />
+            </div>
         )
     }
 }
