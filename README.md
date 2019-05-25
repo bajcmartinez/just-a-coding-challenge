@@ -145,4 +145,4 @@ Here are the steps that needs to be executed (this explanation requires you to h
 
     You may need to fix your execution role into AWS Gateway for both resources `ANY`. Just configure the execution role created by SAM into IAM. This step is not always required but sometimes SAM is not updating the field causing the API to fail.
 
-6.
+6. It works! Note: the API docs cannot be run on the server and are only accessible through local machine or with custom deployment.
